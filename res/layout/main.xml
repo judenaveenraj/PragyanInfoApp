@@ -9,7 +9,9 @@ android:fillViewport="true">
   android:layout_height="match_parent">
   
   <ImageView android:layout_width="match_parent"
-  android:layout_height="wrap_content"
+  android:layout_height="75dp"
+  
+  android:maxHeight="75dp"
   android:scaleType="fitXY"
   android:layout_gravity="top"
   android:src="@drawable/splash_logo"/>
@@ -115,9 +117,9 @@ android:fillViewport="true">
   
   
   <ImageView 
-  android:src="@drawable/ad_here"
+  android:id="@+id/idi"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
+  android:layout_height="60px"
   android:maxHeight="60px"
   android:scaleType="fitXY"
   android:adjustViewBounds="false"

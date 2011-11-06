@@ -15,6 +15,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
@@ -34,6 +35,7 @@ public class sid extends Activity {
 	    public String Fn;
 	    public String Url;
 	    public String FileName = "";
+	    public sid s;
     public String FileURL = "";
     TextView tv;
     @Override
@@ -88,6 +90,7 @@ public class sid extends Activity {
                 // = "http://www.pragyan.org/11/cms/uploads/iconman/0000000702_innovation.png";
                   Fn=dataItem.getname()+".jpg";
                   Url=dataItem.getfileurl();
+                  Log.v("file",dataItem.getfileurl());
                  startDownload();
                   }
         //     tv.setText(DataSet.toString());
@@ -98,6 +101,13 @@ public class sid extends Activity {
         } catch (Exception e) {
              /* Display any Error to the GUI. */
              tv.setText("Error: " + e.getMessage());
+             e.printStackTrace();
+             AlertDialog.Builder adb=new AlertDialog.Builder(s);
+             adb.setTitle("Download Result");
+             adb.setMessage("Error: " + e.getMessage());
+             adb.setPositiveButton("Ok", null);
+             adb.show();
+             finish();
 
         }
         /* Display the TextView. */
@@ -181,17 +191,15 @@ public class sid extends Activity {
            File root = Environment.getExternalStorageDirectory();
            File imgFile = new File(root + "/images/"+FileName);
            //File imgFile = new File(root + "/download/", FileName);
-           if(imgFile.exists()){
-
-               Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
-              
-               myImage.setImageBitmap(myBitmap);
-
+           AlertDialog.Builder adb=new AlertDialog.Builder(s);
+          
+           tv.setText("Done downloading"+root);
+           adb.setTitle("Download Result");
+           adb.setMessage("Done downloading");
+           adb.setPositiveButton("Ok", null);
+           adb.show();
+           finish();
            
-           tv.setText("Done downloading"+root);}
-           else
-           {tv.setText("File doesnt exist");}
           
        }
 

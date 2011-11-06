@@ -1,33 +1,22 @@
 package com.pragyan;
 import java.util.Date;
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.format.DateFormat;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.view.animation.RotateAnimation;
-import android.view.animation.Transformation;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 @SuppressWarnings("deprecation")
@@ -41,6 +30,12 @@ public class PragyanMainAppActivity extends Activity implements android.view.Vie
 	TextView htv;
 	TextView mtv;
 	TextView stv;
+	public PragyanMainAppActivity prag=this;
+	public int currentimageindex=0;
+	private int[] IMAGE_IDS = {
+			R.drawable.splash0, R.drawable.splash1, R.drawable.splash2,	
+			R.drawable.splash3
+		};
 	/** Called when the activity is first created. */
     @Override
     
@@ -48,9 +43,42 @@ public class PragyanMainAppActivity extends Activity implements android.view.Vie
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutInflater().inflate(R.layout.main,null));
-      
+        final Handler mHandler = new Handler();
+
+        // Create runnable for posting
+        final Runnable mUpdateResults = new Runnable() {
+            public void run() {
+            	
+            	AnimateandSlideShow();
+            	
+            }
+        };
+        int delay = 1000; // delay for 1 sec.
+
+        int period = 8000; // repeat every 4 sec.
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+
+       	 	public void run() {
+
+       	 			mHandler.post(mUpdateResults);
+
+       	 	}
+
+        }, delay, period);
+     	
+
     }
-    
+private void AnimateandSlideShow() {
+     	
+     	ImageView slidingimage = (ImageView) findViewById(R.id.idi);
+    		slidingimage.setImageResource(IMAGE_IDS[currentimageindex%IMAGE_IDS.length]);
+    		
+    		currentimageindex++;
+     }
+     
     public void onStart(){
     	super.onStart();
     	dtv=(TextView) this.findViewById(R.id.days_count_view);
@@ -141,6 +169,8 @@ public class PragyanMainAppActivity extends Activity implements android.view.Vie
 
         public void onAnimationEnd(Animation animation) 
         {
+        	Intent intent=new Intent(prag,sid.class);
+        	startActivity(intent);
         	Log.v("done","animation done");
         	setClickListeners();
         	

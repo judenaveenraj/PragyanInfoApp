@@ -23,16 +23,21 @@ public final class R {
         public static final int icon=0x7f020004;
         public static final int left_btn=0x7f020005;
         public static final int right_btn=0x7f020006;
-        public static final int splash_logo=0x7f020007;
-        public static final int title_border=0x7f020008;
-        public static final int top_btn=0x7f020009;
+        public static final int splash0=0x7f020007;
+        public static final int splash1=0x7f020008;
+        public static final int splash2=0x7f020009;
+        public static final int splash3=0x7f02000a;
+        public static final int splash_logo=0x7f02000b;
+        public static final int title_border=0x7f02000c;
+        public static final int top_btn=0x7f02000d;
     }
     public static final class id {
         public static final int bottom_btn=0x7f08000e;
         public static final int clock_lay=0x7f080006;
         public static final int days_count_view=0x7f080007;
         public static final int hr_count_view=0x7f080008;
-        public static final int imageView1=0x7f080011;
+        public static final int idi=0x7f080011;
+        public static final int imageView1=0x7f080012;
         public static final int info_desc=0x7f080005;
         public static final int info_image=0x7f080004;
         public static final int info_title=0x7f080003;
